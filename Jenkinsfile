@@ -12,9 +12,9 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
+    stage('Checkout Code') {
             steps {
-                git 'https://github.com/devopsawspratice/newkubernetis-html-css.git'
+                git branch: "${GIT_BRANCH}", url: "${GIT_REPO}"
             }
         }
 
