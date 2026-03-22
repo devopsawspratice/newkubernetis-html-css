@@ -2,6 +2,8 @@ pipeline {
     agent any
 
     environment {
+         GIT_REPO   = "https://github.com/devopsawspratice/newkubernetis-html-css.git"
+        GIT_BRANCH  = "main"
         DOCKER_HUB = "devopsawspratice"   // your DockerHub username
         APP_NAME   = "saran-app"
         BUILD_TAG  = "${BUILD_NUMBER}"
