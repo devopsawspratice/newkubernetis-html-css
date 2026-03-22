@@ -2,13 +2,19 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB = "<your-dockerhub-username>"
+        DOCKER_HUB = "devopsawspratice"   // your DockerHub username
         APP_NAME   = "saran-app"
         BUILD_TAG  = "${BUILD_NUMBER}"
         IMAGE_NAME = "${DOCKER_HUB}/${APP_NAME}:${BUILD_TAG}"
     }
 
     stages {
+
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/devopsawspratice/newkubernetis-html-css.git'
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
@@ -18,7 +24,7 @@ pipeline {
 
         stage('Login to DockerHub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     sh 'echo $PASS | docker login -u $USER --password-stdin'
                 }
             }
