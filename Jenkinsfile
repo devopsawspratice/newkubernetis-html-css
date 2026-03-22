@@ -41,7 +41,7 @@ pipeline {
         stage('Update Deployment Image') {
             steps {
                 sh '''
-                sed -i "s|image: .*|image: $IMAGE_NAME|g" deployment.yaml
+                sed -i "s|image: .*|image: $IMAGE_NAME|g" deployment.yml
                 '''
             }
         }
